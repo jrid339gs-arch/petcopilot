@@ -1,20 +1,19 @@
-console.log("KEY=", process.env.OPENAI_API_KEY);
-console.log("URL=", process.env.OPENAI_BASE_URL);
 import OpenAI from "openai";
 
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
-  baseURL: process.env.OPENAI_BASE_URL,
+  baseURL: "https://api.siliconflow.cn/v1",
 });
 
 export async function POST(req: Request) {
-  console.log(process.env.OPENAI_API_KEY);
+  console.log("KEY=", process.env.OPENAI_API_KEY);
+  console.log("URL=", process.env.OPENAI_BASE_URL);
 
   const body = await req.json();
 
   try {
     const completion = await client.chat.completions.create({
-      model: "deepseek-ai/DeepSeek-V3"  ,
+      model: "deepseek-ai/DeepSeek-V3",
       messages: [
         {
           role: "system",
@@ -42,13 +41,13 @@ export async function POST(req: Request) {
     console.log(error);
 
     return Response.json({
-        result: {
-            message: error.message,
-            status: error.status,
-            body: error.error,
-            response: error.response?.data,
-            cause: error.cause
-        }
+      result: {
+        message: error.message,
+        status: error.status,
+        body: error.error,
+        response: error.response?.data,
+        cause: error.cause,
+      },
     });
-}
+  }
 }
