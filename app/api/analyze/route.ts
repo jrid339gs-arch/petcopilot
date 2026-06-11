@@ -40,7 +40,13 @@ export async function POST(req: Request) {
     console.log(error);
 
     return Response.json({
-        result: JSON.stringify(error, null, 2),
+        result: {
+            message: error.message,
+            status: error.status,
+            body: error.error,
+            response: error.response?.data,
+            cause: error.cause
+        }
     });
 }
 }
