@@ -1,3 +1,5 @@
+console.log("KEY=", process.env.OPENAI_API_KEY);
+console.log("URL=", process.env.OPENAI_BASE_URL);
 import OpenAI from "openai";
 
 const client = new OpenAI({
