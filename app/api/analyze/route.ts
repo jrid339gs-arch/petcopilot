@@ -40,7 +40,7 @@ export async function POST(req: Request) {
     console.log(error);
 
     return Response.json({
-        result: error.message,
+        result: JSON.stringify(error, null, 2),
     });
 }
 }
